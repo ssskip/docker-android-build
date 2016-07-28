@@ -6,16 +6,21 @@ build:
     # For now, clone a specific branch
     - git clone --depth=5 https://github.com/reddit/Frontpage-Android.git Frontpage-Android
 
+# Pushes to master branch result in an image being built and pushed to
+# Docker Hub as reddit/reddit-android-build:latest.
 publish:
-  ecr:
-    region: us-east-1
-    repo: 210246326331.dkr.ecr.us-east-1.amazonaws.com/android_build
-    # Image gets tagged with the branch's name.
-    tag: $$BRANCH
+  docker:
+    username: $$DOCKERHUB_USERNAME
+    password: $$DOCKERHUB_PASSWORD
+    email: android@reddit.com
+    repo: reddit/reddit-android-build
+    tag: latest
     file: Dockerfile
+    when:
+      branch: master
 
 # These plugins are triggered after a build failure/success.
-#notify:
-  #slack:
-  #  webhook_url: $$CI_SLACK_WEBHOOK_URL
-  #  channel: ci-notifications
+notify:
+  slack:
+    webhook_url: $$CI_SLACK_WEBHOOK_URL
+    channel: ci-notifications
