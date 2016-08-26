@@ -33,7 +33,7 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 COPY tools /opt/tools
 ENV PATH ${PATH}:/opt/tools
 RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --all --no-ui --filter \
-     platform-tools,android-23,build-tools-23.0.3,sys-img-armeabi-v7a-google_apis-23,extra-android-m2repository,extra-google-m2repository"]
+     platform-tools,android-23,android-24,build-tools-23.0.3,sys-img-armeabi-v7a-google_apis-23,extra-android-m2repository,extra-google-m2repository"]
 
 RUN which adb
 RUN which android
