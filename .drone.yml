@@ -10,10 +10,11 @@ build:
 # Docker Hub as reddit/reddit-android-build:latest.
 publish:
   docker:
-    username: $$DOCKERHUB_USERNAME
-    password: $$DOCKERHUB_PASSWORD
+    username: $$QUAY_USERNAME
+    password: $$QUAY_PASSWORD
     email: android@reddit.com
     repo: reddit/reddit-android-build
+    registry: quay.io
     tag: latest
     file: Dockerfile
     when:
