@@ -54,12 +54,6 @@ RUN apt-get clean
 # Create workspace
 RUN mkdir -p /drone/src/github.com/reddit/
 
-# Initialize dependencies
-COPY Frontpage-Android /drone/src/github.com/reddit/Frontpage-Android
-RUN cd /drone/src/github.com/reddit/Frontpage-Android && ./gradlew clean && cd .. && rm -rf Frontpage-Android
-
 # Start up the emulator
 RUN ["/bin/bash", "-c", "SHELL=/bin/bash emulator -avd nexus5_23 -no-skin -no-audio -no-window & /opt/tools/android-wait-for-emulator.sh"]
 
-# Set working directory
-WORKDIR /drone/src/github.com/reddit/
